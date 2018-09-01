@@ -1,7 +1,65 @@
-.btn-info {
-	margin: 10px;
+@import url('https://fonts.googleapis.com/css?family=Fondamento|Merienda+One');
+
+body {
+	background-color:#E3E3E3;
+}
+
+.titleImage {
+	height: 75px;
+	width: 75px;
 }
 
 h1{
+	color:  #BA6400;
+	font-family: 'Merienda One', cursive;
+	font-size: 64px;
+	margin: 50px;
 	text-align: center;
+}
+
+h2{
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#addTopic {
+	background-color: #BA6400;
+	font-family: 'Fondamento', cursive;
+	margin-top: 10px;
+}
+
+form {
+	float: right;
+	width: 250px;
+}
+
+.btn-info {
+	background-color: #008F96;
+	font-size: 24px;
+	margin: 10px;
+}
+
+p {
+	color: #874900;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 24px;
+}
+
+
+#showResult {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.gifDiv, .movieDiv {
+	margin: 50px;
+}
+
+#poster {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+
 }
