@@ -17,9 +17,13 @@ function displayGifs() {
 		var results = response.data;
 		for (var i = 0; i < 10; i++) {
 			var gifDiv = $("<div>");
-			var gifURL = results[i].images.fixed_height_still.url;
-			var image = $("<img>")
-			image.attr("src", gifURL);
+			var stillURL = results[i].images.fixed_height_still.url;
+			var animateURL = results[i].images.fixed_height.url;
+			var image = $("<img class='gif'>")
+			image.attr("src", stillURL);
+			image.attr("data-still", stillURL);
+			image.attr("data-state", "still");
+			image.attr("data-animate", animateURL);
 			gifDiv.append(image);
 			var rating = results[i].rating;
 			var displayRating = $("<p>").text("Rating: " + rating)
@@ -49,6 +53,20 @@ $("#addTopic").on("click", function (event) {
 	renderButtons();
 });
 
+
+
+function animatePause() {
+	var state = $(this).attr("data-state");
+	if (state === "still") {
+		$(this).attr("src", $(this).attr("data-animate"));
+		$(this).attr("data-state", "animate");
+	} else {
+		$(this).attr("src", $(this).attr("data-still"));
+		$(this).attr("data-state", "still");
+	}
+}
+
 renderButtons();
 
-$(document).on("click", ".btn-info", displayGifs);
+	$(document).on("click", ".btn-info", displayGifs);
+	$(document).on("click", ".gif", animatePause);
