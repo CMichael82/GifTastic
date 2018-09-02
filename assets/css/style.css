@@ -22,10 +22,13 @@ h2{
 	margin-bottom: 50px;
 }
 
+
+
 #addTopic {
 	background-color: #BA6400;
 	font-family: 'Fondamento', cursive;
-	margin-top: 10px;
+	font-size: 18px;
+	margin-top: 15px;
 }
 
 form {
@@ -42,19 +45,24 @@ form {
 p {
 	color: #874900;
 	font-family: 'Times New Roman', Times, serif;
-	font-size: 24px;
+	font-size: 18px;
+	text-transform: capitalize;
 }
 
 
-#showResult {
+#showResult , #showFavorites{
 	margin-top: 50px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
 
-.gifDiv, .movieDiv {
-	margin: 50px;
+.gifDiv, .movieDiv, .favorite, .favImage{
+	margin: 15px;
+}
+
+.favDiv {
+	height: 50%;
 }
 
 #poster {

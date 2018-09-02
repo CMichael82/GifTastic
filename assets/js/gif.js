@@ -3,7 +3,7 @@ var topics = ["Kurt Cobain", "Joan Baez", "John Lennon", "Amy Winehouse", "Nina 
 var $addButtons = $("#addButtons");
 var $showResult = $("#showResult");
 
-function displayGifs() {
+function displayResults() {
 	var artist = $(this).attr("data-topic");
 	var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" +
 		artist + "&api_key=2GJ0qp4kXP8LCKLPFVPuiylHFmdAsNea&limit=10";
@@ -40,7 +40,9 @@ function displayGifs() {
 		for (var i = 0; i < gifResults.length; i++) {
 			var gifDiv = $("<div class='gifDiv'>");
 			var rating = gifResults[i].rating;
-			var displayRating = $("<p>").text("Rating: " + rating)
+			var displayRating = $("<p>").text("Rating: " + rating);
+			var title = gifResults[i].title;
+			var displayTitle =$("<p>").text("Title: " + title);
 			var stillURL = gifResults[i].images.fixed_height_still.url;
 			var animateURL = gifResults[i].images.fixed_height.url;
 			var image = $("<img class='gif'>")
@@ -48,7 +50,12 @@ function displayGifs() {
 			image.attr("data-still", stillURL);
 			image.attr("data-state", "still");
 			image.attr("data-animate", animateURL);
-			gifDiv.append(displayRating, image);
+			var favorites = $("<button class='favorite'>");
+			favorites.text("Add to Favorites");
+			favorites.attr("data-favStill", stillURL);
+			favorites.attr("data-favAnimate", animateURL);
+			showFavorites = $("<p>").append(favorites);
+			gifDiv.append(displayRating,displayTitle, image, showFavorites);
 			$showResult.prepend(gifDiv);
 		}
 	});
@@ -84,7 +91,24 @@ function animatePause() {
 	}
 }
 
+function addToFavorites (){
+	var favStill = $(this).attr("data-favStill");
+	var favAnimate = $(this).attr("data-favAnimate");
+	console.log("you clicked me" + favStill);
+	var favDiv =$("<div>");
+	var favImage =$("<img class='favImage'>");
+	favImage.attr("src", favStill);
+	favImage.attr("data-still", favStill);
+	favImage.attr("data-state", "still");
+	favImage.attr("data-animate", favAnimate);
+	favDiv.append(favImage);
+	$("#showFavorites").prepend(favDiv);
+	}
+
 renderButtons();
 
-$(document).on("click", ".btn-info", displayGifs);
+$(document).on("click", ".btn-info", displayResults);
 $(document).on("click", ".gif", animatePause);
+$(document).on("click", ".favorite", addToFavorites);
+$(document).on("click", ".favImage", animatePause);
+
